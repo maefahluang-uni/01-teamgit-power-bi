@@ -91,7 +91,28 @@ public class Counter {
 	// TODO: dev3- count the frequency of word in sentence,
 	// refactor source code from dev1 and dev2
 	public void countFrequency(String word, String sentence) {
-		_ctr = -99;
-	}
+        if (word == null || sentence == null || word.isEmpty() || sentence.isEmpty()) {
+            throw new IllegalArgumentException("Word and sentence must be non-empty");
+        }
+
+        // Convert both the word and sentence to lowercase for case-insensitive comparison
+        String lowercaseWord = word.toLowerCase();
+        String lowercaseSentence = sentence.toLowerCase();
+
+        // Split the sentence into words using whitespace as a delimiter
+        String[] words = lowercaseSentence.split("\\s+");
+
+        // Count the frequency of the specified word
+        for (String w : words) {
+            if (w.equals(lowercaseWord)) {
+                _ctr++;
+            }
+        }
+    }
+
+    public int getFrequency() {
+        return _ctr;
+    }
+	
 
 }
